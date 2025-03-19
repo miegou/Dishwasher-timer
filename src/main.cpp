@@ -25,10 +25,10 @@ unsigned long previousMillis = 0; // Previous time in milliseconds
 const long interval = 1000;       // Interval in milliseconds
 bool colonState = false;          // Colon state
 
-unsigned long startTime = 0;        // When the timer was started
-unsigned long remainingMinutes = 0; // Remaining minutes
-unsigned long remainingTimer = 0;   // Remaining timer
-bool timerRunning = false;          // Is the timer running
+unsigned long startTime = 0;             // When the timer was started
+unsigned long remainingMinutes = 0;      // Remaining minutes
+unsigned long remainingTimerMinutes = 0; // Remaining timer
+bool timerRunning = false;               // Is the timer running
 
 TM1637Display display(CLK, DIO); // Segment display object
 
@@ -38,6 +38,11 @@ const uint8_t SEG_DONE[] = {
     SEG_A | SEG_B | SEG_C | SEG_D | SEG_E | SEG_F, // O
     SEG_C | SEG_E | SEG_G,                         // n
     SEG_A | SEG_D | SEG_E | SEG_F | SEG_G          // E
+};
+
+// Display "t" for timer
+const uint8_t SEG_T[] = {
+    SEG_D | SEG_E | SEG_F | SEG_G // t
 };
 
 // Check if a timer button is pressed
@@ -80,7 +85,7 @@ bool inputDetected()
           digitalRead(Quickwash) == LOW);
 }
 
-// Get the time value of the button pressed
+// Get the time value of the wash button pressed
 unsigned long getTimerValue()
 {
   if (digitalRead(Intensive) == LOW)
@@ -101,17 +106,17 @@ unsigned long getTimerValue()
   }
   if (digitalRead(Quickwash) == LOW)
   {
-    return 1 * 60 * 1000; // 30 minutes in milliseconds
+    return 1 * 60 * 1000; // 30 minutes in milliseconds, set for 1 minute for testing
   }
   return 0; // If no button is pressed
 }
 
 void displayDetectedTimerValue()
 {
-  remainingTimer = selectedTime / 60000;
+  remainingTimerMinutes = selectedTimer / 60000;
 
-  int hours = remainingMinutes / 60;
-  int minutes = remainingMinutes % 60;
+  int hours = remainingTimerMinutes / 60;
+  int minutes = remainingTimerMinutes % 60;
 
   int displayValue = (hours * 100) + minutes; // Format as HMM (e.g., 1:05 -> 105)
   display.showNumberDecEx(displayValue, 0b01000000, false);
