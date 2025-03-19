@@ -1,3 +1,6 @@
+// MIT License (c) 2025 miegou
+// See LICENSE file for details.
+
 #include <Arduino.h>
 #include <Wire.h>
 #include <TM1637Display.h>

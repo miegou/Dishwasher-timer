@@ -44,7 +44,7 @@ This project is an esp32-based timer for a dishwasher. It allows the user to sel
 
 ## Tasks
 
-For detailed tasks and future improvements, refer to [tasks.md](tasks.md).
+For detailed tasks and future improvements, refer to [Tasks.md](Tasks.md).
 
 ## License
 
