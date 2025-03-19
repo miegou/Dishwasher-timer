@@ -15,6 +15,9 @@ This project is an esp32-based timer for a dishwasher. It allows the user to sel
 - TM1637 4-digit 7-segment display
 
 ## Hardware for prototyping
+
+- any esp32 board or microcontroller
+- 4-digit 7-segment display with TM1637 chip
 - Push buttons for selecting wash cycles and delay timers
 - Wires and breadboard for connections
 
