@@ -52,3 +52,32 @@ For detailed tasks and future improvements, refer to [Tasks.md](Tasks.md).
 ## License
 
 This project is licensed under the MIT License.
+
+## Flowchart
+
+```mermaid
+graph TD
+    A[power on] --> B[Setup]
+    B --> C{Input Detected?}
+    C --> DD{which input?}
+    DD -- Pin 7-9 --> D[Get Delay Timer Value]
+    DD -- Pin 2-6 --> DDD[Get Wash timer Value]
+    DDD --> E
+    D --> E[Display Timer Value]
+    E --> F
+    C -- No --> F{Start Button Pressed?}
+    F -- Yes --> G[Start Timer]
+    G --> H[Update Timer Display]
+    F -- No --> H[Update Timer Display]
+    H --> I{Timer Running?}
+    I -- Yes --> J{Timer Finished?}
+    J -- Yes --> K[Wash Ended]
+    K --> L[Display done]
+    L --> M[Clear Display]
+    M --> N[Wait for Input]
+    J -- No --> O[Continue Timer]
+    I -- No --> P[Wait for Input]
+    P --> C
+    O --> H
+    N --> C
+```
